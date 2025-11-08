@@ -1,4 +1,4 @@
-package Sistema_De_Gestion_De_Venta_De_Libros;
+package Main;
 
 public class Sistema_De_Gestion_De_Venta_De_Libros {
 
