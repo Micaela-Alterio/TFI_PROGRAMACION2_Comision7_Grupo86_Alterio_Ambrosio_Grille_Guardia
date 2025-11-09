@@ -16,7 +16,6 @@ public class Libro {
     private String autor;
     private Integer anioPublicacion; //Se usa Integer para permitir null
     private String genero;
-    private Integer stock; // Agregado para lógica de venta
 
     //Constructor vacío para DAO/JDBC para la creación de nuevos objetos
     
@@ -28,7 +27,8 @@ public class Libro {
     
     public Libro(Long idLibro, Boolean eliminado,
             FichaBibliografica fichaBibliografica, String titulo, String autor,
-            Integer anioPublicacion, String genero, Integer stock) {
+            Integer anioPublicacion, String genero) {
+        
         this.idLibro = idLibro;
         this.eliminado = eliminado;
         this.fichaBibliografica = fichaBibliografica;
@@ -36,34 +36,12 @@ public class Libro {
         this.autor = autor;
         this.anioPublicacion = anioPublicacion;
         this.genero = genero;
-        this.stock = stock;
     }
 
     //Método para implementar la baja lógica (UPDATE)
     
     public void darDeBaja() {
         this.eliminado = Boolean.TRUE;
-    }
-
-    // Metodo para verificar si el libro tiene stock disponible.
-    
-    public Boolean stockDisponible() {
-        // Verifica que no esté eliminado y que el stock sea mayor a 0
-        return !this.eliminado && (this.stock != null && this.stock > 0);
-    }
-    
-    // Metodo que disminuye la cantidad de stock del libro después de una venta.
-    //Retorna TRUE si la disminución fue exitosa (hay stock suficiente)o FALSE si no.
-        
-    public Boolean disminuirStock(Integer cantidad) {
-        
-        //Chequea si se puede restar la cantidad solicitada
-        
-        if (this.stock != null && this.stock >= cantidad) {
-            this.stock -= cantidad;
-            return Boolean.TRUE; 
-        }
-        return Boolean.FALSE; 
     }
     
     //Getters & Setters
@@ -124,38 +102,26 @@ public class Libro {
         this.genero = genero;
     }
 
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-    
-    
-
     //Metodo toString
     
     @Override
     public String toString() {
         
         //Se crea la variable estadoLibro y mediante un if/else se corrobora si
-        //el libro esta eliminado o activo. En caso de estar activo se chequea
-        //hay stock y se almacena en la variable el mensaje correspondiente.
+        //el libro esta eliminado o activo y se almacena en la variable
+        //el mensaje correspondiente.
         
         String estadoLibro; 
         
-        if (this.eliminado == Boolean.TRUE) {
-            estadoLibro = "Libro eliminado";
-        } else if (this.stock != null && this.stock > 0) {
-         estadoLibro = "Hay existencias";
+        if (this.eliminado != null && this.eliminado) {
+            estadoLibro = "Libro eliminado.";
         }else {
-            estadoLibro = "No hay existencias";
+            estadoLibro = "Libro existente.";
         }
         
         return "\nLibro:\nidLibro: " + idLibro + "\nTitulo: " + titulo +
                 "\nAutor: " + autor + "\nAnio de Publicacion: " +
-                anioPublicacion + "\nStock: " + stock + "Ficha Bibliografica: "
+                anioPublicacion + "Ficha Bibliografica: "
                 + fichaBibliografica + "Estado del libro: " + estadoLibro;
     }
 }
