@@ -1,31 +1,50 @@
 package Clases;
 
-public class FichaBibliografica {
-    
-    //Atributos para la base de datos
-    //En idFicha se usa Long para que pueda ser NULL
-    //eliminado implementa la baja lógica (Soft Delete)
-    private Long idFicha;
-    private Boolean eliminado;
+import java.util.Objects;
 
-    // Atributos propios
+/**
+ * Entidad FichaBibliografica (Clase B en la relación 1:1).
+ * Contiene datos bibliográficos asociados a un Libro.
+ * Hereda de Base para el ID (Long) y la baja lógica (eliminado).
+ */
+public class FichaBibliografica extends Base {
+    
+    /** Editorial del libro (NOT NULL en BD). */
     private String editorial;
-    private String isbn; 
+    
+    /** ISBN del libro (NOT NULL, UNIQUE en BD). Utilizado para equals/hashCode. */
+    private String isbn;    
+    
+    /** Idioma en el que está el libro (NOT NULL en BD). */
     private String idioma;
-    private Integer nroPaginas; // Se usa Integer para permitir null
+    
+    /** Número de páginas (INT, CHECK > 0 en BD). Se usa Integer para permitir null/opcionalidad. */
+    private Integer nroPaginas; 
+    
+    /** Sinopsis del libro. */
     private String sinopsis;
     
-    // Constructor vacío para DAO/JDBC para la creación de nuevos objetos
+    /**
+     * Constructor por defecto para crear una nueva instancia.
+     * El ID se inicializa en null (será asignado por la BD) y eliminado en false (heredado de Base).
+     */
     public FichaBibliografica() {
+        super(); // Llama al constructor por defecto de Base
     }
 
-    // Constructor completo para DAO para reconstruir el objeto a partir de
-    // la lectura de la base de datos.
-    public FichaBibliografica(Long idFicha, Boolean eliminado, String editorial,
-            String isbn, String idioma, Integer nroPaginas, String sinopsis) {
-        
-        this.idFicha = idFicha;
-        this.eliminado = eliminado;
+    /**
+     * Constructor completo usado por el DAO para reconstruir el objeto desde la base de datos.
+     * @param id Identificador único de la ficha (PK).
+     * @param eliminado Estado de baja lógica.
+     * @param editorial Editorial del libro.
+     * @param isbn ISBN del libro (UNIQUE).
+     * @param idioma Idioma.
+     * @param nroPaginas Número de páginas.
+     * @param sinopsis Resumen o sinopsis.
+     */
+    public FichaBibliografica(Long id, Boolean eliminado, String editorial,
+                              String isbn, String idioma, Integer nroPaginas, String sinopsis) {
+        super(id, eliminado); // Llama al constructor completo de Base
         this.editorial = editorial;
         this.isbn = isbn;
         this.idioma = idioma;
@@ -33,106 +52,104 @@ public class FichaBibliografica {
         this.sinopsis = sinopsis;
     }
     
-    // Método para implementar la baja lógica (UPDATE)
-    public void darDeBaja() {
-        this.eliminado = Boolean.TRUE;
+    // --- Getters y Setters ---
+
+    /**
+     * Obtiene la editorial.
+     * @return La editorial.
+     */
+    public String getEditorial() { return editorial; }
+    
+    /**
+     * Establece la editorial.
+     * @param editorial La editorial a asignar.
+     */
+    public void setEditorial(String editorial) { this.editorial = editorial; }
+    
+    /**
+     * Obtiene el ISBN.
+     * @return El ISBN.
+     */
+    public String getIsbn() { return isbn; }
+
+    /**
+     * Establece el ISBN (debe ser único).
+     * @param isbn El ISBN a asignar.
+     */
+    public void setIsbn(String isbn) { this.isbn = isbn; }
+
+    /**
+     * Obtiene el idioma.
+     * @return El idioma.
+     */
+    public String getIdioma() { return idioma; }
+
+    /**
+     * Establece el idioma.
+     * @param idioma El idioma a asignar.
+     */
+    public void setIdioma(String idioma) { this.idioma = idioma; }
+
+    /**
+     * Obtiene el número de páginas.
+     * @return El número de páginas.
+     */
+    public Integer getNroPaginas() { return nroPaginas; }
+
+    /**
+     * Establece el número de páginas.
+     * @param nroPaginas El número de páginas a asignar.
+     */
+    public void setNroPaginas(Integer nroPaginas) { this.nroPaginas = nroPaginas; }
+
+    /**
+     * Obtiene la sinopsis.
+     * @return La sinopsis.
+     */
+    public String getSinopsis() { return sinopsis; }
+
+    /**
+     * Establece la sinopsis.
+     * @param sinopsis La sinopsis a asignar.
+     */
+    public void setSinopsis(String sinopsis) { this.sinopsis = sinopsis; }
+    
+    // --- Sobrescritura de métodos de Object ---
+    
+    /**
+     * Compara dos fichas bibliográficas por igualdad SEMÁNTICA basada en el campo UNICO (ISBN).
+     * @param o Objeto a comparar.
+     * @return true si las fichas tienen el mismo ISBN.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FichaBibliografica that = (FichaBibliografica) o;
+        // Solo compara por ISBN si no es null
+        return isbn != null && Objects.equals(isbn, that.isbn);
+    }
+
+    /**
+     * Calcula el hash code basado en el ISBN, consistente con equals().
+     * @return Hash code de la ficha.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(isbn);
     }
     
-    //Metodo que permite actualizar los datos de la ficha, cumpliendo la función
-    //'Update' del CRUD.
-    
-    public void actualizar(String isbn, String idioma, String editorial,
-            Integer nroPaginas, String sinopsis) {
-        
-        this.editorial = editorial;
-        this.isbn = isbn;
-        this.idioma = idioma;
-        this.nroPaginas = nroPaginas;
-        this.sinopsis = sinopsis;
-    }
-
-
-    //Getters & Setters
-
-    public Long getIdFicha() {
-        return idFicha;
-    }
-
-    public void setIdFicha(Long idFicha) {
-        this.idFicha = idFicha;
-    }
-
-    public Boolean getEliminado() {
-        return eliminado;
-    }
-
-    public void setEliminado(Boolean eliminado) {
-        this.eliminado = eliminado;
-    }
-
-    public String getEditorial() {
-        return editorial;
-    }
-
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
-    }
-    
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getIdioma() {
-        return idioma;
-    }
-
-    public void setIdioma(String idioma) {
-        this.idioma = idioma;
-    }
-
-    public Integer getNroPaginas() {
-        return nroPaginas;
-    }
-
-    public void setNroPaginas(Integer nroPaginas) {
-        this.nroPaginas = nroPaginas;
-    }
-
-    public String getSinopsis() {
-        return sinopsis;
-    }
-
-    public void setSinopsis(String sinopsis) {
-        this.sinopsis = sinopsis;
-    }
-
-    
-    
-    //Metodo toString
-    
+    /**
+     * Devuelve una representación legible de la Ficha Bibliográfica.
+     * @return String formateado con los detalles clave.
+     */
     @Override
     public String toString() {
-        
-        //Se crea la variable estadoFicha y mediante un if/else se corrobora si
-        //la ficha esta eliminada o activa y se almacena en la variable el
-        //mensaje correspondiente.
-        
-        String estadoFicha; 
-        
-        if (this.eliminado != null && this.eliminado) {
-            estadoFicha = "Ficha eliminada.";
-        }else {
-            estadoFicha = "Ficha existente.";
-        }
+        String estadoFicha = this.isEliminado() ? "Ficha eliminada (Baja Lógica)." : "Ficha activa.";
 
-        return "\nFicha Bibliografica:\nID Ficha: " + idFicha + "\nEditorial: "
+        return "\nFicha Bibliografica:\nID Ficha: " + getId() + "\nEditorial: "
                 + editorial + "\nISBN: " + isbn + "\nIdioma: " + idioma +
                 "\nNumero de Páginas: " + nroPaginas + "\nSinopsis: " + sinopsis
                 + "\nEstado de la ficha : " + estadoFicha;
     }
-
 }
