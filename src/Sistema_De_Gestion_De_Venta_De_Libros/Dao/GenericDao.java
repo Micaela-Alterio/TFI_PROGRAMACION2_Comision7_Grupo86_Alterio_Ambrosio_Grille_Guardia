@@ -11,3 +11,19 @@ public interface GenericDao<T> {
     void actualizar(T entidad, Connection conn);
     void eliminar(Long id, Connection conn);
 }
+
+public interface IFichaBibliograficaDao extends GenericDao<FichaBibliografica> {
+
+}
+
+public interface ILIbroDao extends GenericDao<Libro> {
+
+}
+
+public interface IVentaDao extends GenericDao<Venta> {
+
+}
+
+public interface IClienteDao extends GenericDao<Cliente> {
+
+}
