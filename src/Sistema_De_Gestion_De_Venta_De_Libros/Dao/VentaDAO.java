@@ -96,9 +96,8 @@ public class VentaDAO implements GenericDAO<Venta> {
         return ventas;
     }
 
-    /**
-     * Setea los parámetros de un PreparedStatement a partir de un objeto Venta.
-     */
+   //Setea los parámetros de un PreparedStatement a partir de un objeto Venta.
+    
     private void setVentaParameters(PreparedStatement stmt, Venta venta) throws SQLException {
         stmt.setLong(1, venta.getLibro().getId());
         stmt.setLong(2, venta.getCliente().getId());
@@ -146,3 +145,4 @@ public class VentaDAO implements GenericDAO<Venta> {
         return venta;
     }
 }
+
