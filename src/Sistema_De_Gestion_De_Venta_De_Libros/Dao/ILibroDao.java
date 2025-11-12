@@ -4,7 +4,7 @@ import sistema.de.gestion.de.venta.de.libros.entities.Libro;
 import java.sql.Connection;
 import java.util.List;
 
-public interface ILibroDAO extends GenericDao<Libro> {
+public interface ILibroDao extends GenericDao<Libro> {
 
     
     List<Libro> buscarPorTitulo(String titulo, Connection conn);
