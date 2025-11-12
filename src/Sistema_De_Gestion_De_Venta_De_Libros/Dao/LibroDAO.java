@@ -52,7 +52,6 @@ public class LibroDAO implements GenericDAO<Libro> {
         this.fichaDAO = fichaDAO;
     }
 
-//1. Insertar libro sin transaccion externa > crea su propia conexion con DatabaseConnection.getConnection()
 @Override
 public void crear(Libro libro, Connection conn) throws Exception {
     try (PreparedStatement stmt = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
@@ -213,3 +212,4 @@ private void setFichaBibliograficaId(PreparedStatement stmt, int parameterIndex,
     }
 
 }
+
