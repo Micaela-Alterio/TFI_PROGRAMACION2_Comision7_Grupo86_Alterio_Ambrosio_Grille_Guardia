@@ -5,11 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Cliente;
 
-/**
- * DAO para la entidad Cliente.
- * Soporta operaciones CRUD y soft delete.
- * Permite usar conexión externa para transacciones.
- */
 public class ClienteDAO implements GenericDAO<Cliente> {
 
     private static final String INSERT_SQL =
@@ -109,3 +104,4 @@ public class ClienteDAO implements GenericDAO<Cliente> {
         return c;
     }
 }
+
