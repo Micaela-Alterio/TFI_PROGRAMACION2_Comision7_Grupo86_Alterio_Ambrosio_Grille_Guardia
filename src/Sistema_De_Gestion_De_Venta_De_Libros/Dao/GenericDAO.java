@@ -1,4 +1,4 @@
-package dao;
+package Dao;
 
 import java.sql.Connection;
 import java.util.List;
@@ -14,3 +14,4 @@ public interface GenericDAO<T> {
     void eliminar(Long id, Connection conn) throws Exception;
 
 }
+
