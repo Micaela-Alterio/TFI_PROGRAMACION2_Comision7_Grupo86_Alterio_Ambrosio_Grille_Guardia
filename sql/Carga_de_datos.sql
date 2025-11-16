@@ -42,7 +42,7 @@ INSERT INTO libros (id_ficha, titulo, autor, anio_publicacion, genero)
 VALUES
 (1, 'El reflejo del tiempo', 'Laura Méndez', 2018, 'Ficción literaria'),
 (2, 'Humanos Digitales', 'Carlos Pérez', 2020, 'Ensayo'),
-(3, 'Orgullo y prejuicio', 'Jane Austen', 1813, 'Clásico'),
+(3, 'Cien años de soledad', 'Gabriel García Márquez', 1967, 'Clásico'),
 (4, 'El vuelo del colibrí', 'Gabriel Álvarez', 2021, 'Realismo mágico'),
 (5, 'Eva Duarte: una vida argentina', 'Mariana Torres', 2015, 'Biografía'),
 (6, 'Memorias compartidas', 'Fernando Ruiz', 2019, 'Filosofía'),
