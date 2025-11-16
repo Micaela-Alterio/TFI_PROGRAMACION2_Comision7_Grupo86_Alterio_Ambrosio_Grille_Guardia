@@ -1,4 +1,4 @@
-package config;
+package Config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -39,3 +39,4 @@ public class DatabaseConnection {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
+
