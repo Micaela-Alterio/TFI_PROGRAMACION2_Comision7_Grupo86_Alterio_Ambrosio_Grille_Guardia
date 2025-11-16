@@ -1,4 +1,4 @@
-package config;
+package Config;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -71,4 +71,5 @@ public class TransactionManager implements AutoCloseable {
         return transactionActive;
     }
 }
+
 
