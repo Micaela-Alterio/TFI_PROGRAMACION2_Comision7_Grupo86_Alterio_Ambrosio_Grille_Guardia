@@ -1,4 +1,4 @@
-package main;
+package Main;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,4 +37,5 @@ public class TestConexion {
             e.printStackTrace();
         }
     }
+
 }
