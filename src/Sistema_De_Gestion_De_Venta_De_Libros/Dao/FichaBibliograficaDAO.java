@@ -1,4 +1,4 @@
-package dao;
+package Dao;
 
 import models.FichaBibliografica;
 import java.sql.*;
@@ -114,4 +114,5 @@ public class FichaBibliograficaDAO implements GenericDAO<FichaBibliografica> {
         return ficha;
     }
 }
+
 
