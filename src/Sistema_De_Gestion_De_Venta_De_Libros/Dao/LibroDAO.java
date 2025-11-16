@@ -11,7 +11,7 @@ public class LibroDAO implements GenericDAO<Libro> {
 
     //Query para insertar un libro en la db
     // El id es AUTO_INCREMENT y se obtiene con RETURN_GENERATED_KEYS.
-    private static final String INSERT_SQL = "INSERT INTO libros (id_libro, id_ficha, titulo, autor, anio_publicacion, genero, eliminado) VALUES (?, ?, ?, ?,?,?,?)";
+    private static final String INSERT_SQL = "INSERT INTO libros (id_ficha, titulo, autor, anio_publicacion, genero) VALUES (?, ?,?,?,?)";
 
     //Query para actualizar un libro en la db
     //NO actualiza el flag eliminado (solo se modifica en soft delete).
@@ -52,6 +52,12 @@ public class LibroDAO implements GenericDAO<Libro> {
         this.fichaDAO = fichaDAO;
     }
 
+//Inserta un libro en la base de datos dentro de una transacción.
+// ID del libro se genera automáticamente.
+//@param libro Libro a insertar
+//@param conn Conexión proporcionada externamente (permite transacciones)
+//@throws Exception Si hay error en la inserción
+     
 @Override
 public void crear(Libro libro, Connection conn) throws Exception {
     try (PreparedStatement stmt = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
@@ -212,5 +218,6 @@ private void setFichaBibliograficaId(PreparedStatement stmt, int parameterIndex,
     }
 
 }
+
 
 
