@@ -1,4 +1,4 @@
-package dao;
+package Dao;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -145,4 +145,5 @@ public class VentaDAO implements GenericDAO<Venta> {
         return venta;
     }
 }
+
 
