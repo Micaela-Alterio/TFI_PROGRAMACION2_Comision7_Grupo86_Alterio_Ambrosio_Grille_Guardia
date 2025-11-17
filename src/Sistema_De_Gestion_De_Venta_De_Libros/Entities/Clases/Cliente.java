@@ -30,7 +30,7 @@ public class Cliente extends Base {
      * @param email Correo electrónico (UNIQUE).
      * @param telefono Número de teléfono.
      */
-    public Cliente(Long id, boolean eliminado, String nombre, String apellido, String email, String telefono) {
+    public Cliente(Long id, Boolean eliminado, String nombre, String apellido, String email, String telefono) {
         super(id, eliminado);
         this.nombre = nombre;
         this.apellido = apellido;

@@ -39,7 +39,7 @@ public class Venta extends Base {
      * @param metodoPago Método de pago.
      * @param cantidad Cantidad de unidades vendidas.
      */
-    public Venta(Long id, boolean eliminado, Libro libro, Cliente cliente, LocalDate fechaVenta, 
+    public Venta(Long id, Boolean eliminado, Libro libro, Cliente cliente, LocalDate fechaVenta, 
                  BigDecimal precio, String metodoPago, Integer cantidad) {
         super(id, eliminado);
         this.libro = libro;
