@@ -1,11 +1,11 @@
 package Dao;
 
-import config.DatabaseConnection;
-import models.Libro;
+import Config.DatabaseConnection;
+import Entities.Clases.Libro;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import models.FichaBibliografica;
+import Entities.Clases.FichaBibliografica;
 
 public class LibroDAO implements GenericDAO<Libro> {
 

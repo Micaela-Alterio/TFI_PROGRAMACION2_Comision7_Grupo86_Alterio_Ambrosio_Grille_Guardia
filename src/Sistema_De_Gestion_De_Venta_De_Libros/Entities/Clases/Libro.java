@@ -1,5 +1,6 @@
-package Clases; // Asegúrate de que este sea el paquete correcto (prog2int.entities o Clases)
+package Entities.Clases; // Asegúrate de que este sea el paquete correcto (prog2int.entities o Clases)
 
+import Clases.Base;
 /**
  * Entidad Libro (Clase A en la relación 1:1).
  * Hereda de Base para el ID (Long) y la baja lógica (eliminado).

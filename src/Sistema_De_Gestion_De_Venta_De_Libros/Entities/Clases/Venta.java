@@ -1,5 +1,6 @@
-package Clases;
+package Entities.Clases;
 
+import Clases.Base;
 import java.time.LocalDate;
 import java.math.BigDecimal; 
 

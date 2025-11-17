@@ -3,9 +3,9 @@ package Dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import models.Venta;
-import models.Cliente;
-import models.Libro;
+import Entities.Clases.Venta;
+import Entities.Clases.Cliente;
+import Entities.Clases.Libro;
 
 public class VentaDAO implements GenericDAO<Venta> {
 

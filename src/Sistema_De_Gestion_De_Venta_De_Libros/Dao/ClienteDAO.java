@@ -3,7 +3,8 @@ package Dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import models.Cliente;
+
+import Entities.Clases.Cliente;
 
 public class ClienteDAO implements GenericDAO<Cliente> {
 
