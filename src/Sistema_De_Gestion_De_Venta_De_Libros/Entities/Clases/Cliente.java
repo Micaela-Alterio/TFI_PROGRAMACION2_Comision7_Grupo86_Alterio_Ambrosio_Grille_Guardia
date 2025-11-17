@@ -46,6 +46,15 @@ public class Cliente extends Base {
         super();
     }
     
+    public void actualizar(String nombre, String apellido, String email,
+            String telefono) {
+        
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
+    }
+    
     // --- Getters y Setters ---
 
     /**

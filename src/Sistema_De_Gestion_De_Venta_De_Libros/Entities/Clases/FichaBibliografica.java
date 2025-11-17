@@ -12,7 +12,7 @@ public class FichaBibliografica extends Base {
     private String editorial;
     private String isbn; 
     private String idioma;
-    private Integer nroPaginas; // Se usa Integer para permitir null
+    private Integer numPaginas; // Se usa Integer para permitir null
     private String sinopsis;
     
     // Constructor vacío para DAO/JDBC para la creación de nuevos objetos
@@ -29,7 +29,7 @@ public class FichaBibliografica extends Base {
         this.editorial = editorial;
         this.isbn = isbn;
         this.idioma = idioma;
-        this.nroPaginas = nroPaginas;
+        this.numPaginas = nroPaginas;
         this.sinopsis = sinopsis;
     }
     
@@ -37,12 +37,12 @@ public class FichaBibliografica extends Base {
     //'Update' del CRUD.
     
     public void actualizar(String isbn, String idioma, String editorial,
-            Integer nroPaginas, String sinopsis) {
+            Integer numPaginas, String sinopsis) {
         
         this.editorial = editorial;
         this.isbn = isbn;
         this.idioma = idioma;
-        this.nroPaginas = nroPaginas;
+        this.numPaginas = numPaginas;
         this.sinopsis = sinopsis;
     }
     //Getters & Setters
@@ -72,11 +72,11 @@ public class FichaBibliografica extends Base {
     }
 
     public Integer getNroPaginas() {
-        return nroPaginas;
+        return numPaginas;
     }
 
     public void setNroPaginas(Integer nroPaginas) {
-        this.nroPaginas = nroPaginas;
+        this.numPaginas = nroPaginas;
     }
 
     public String getSinopsis() {
@@ -123,7 +123,7 @@ public class FichaBibliografica extends Base {
 
         return "\nFicha Bibliografica:\nID Ficha: " + getId() + "\nEditorial: "
                 + editorial + "\nISBN: " + isbn + "\nIdioma: " + idioma +
-                "\nNumero de Páginas: " + nroPaginas + "\nSinopsis: " + sinopsis
+                "\nNumero de Páginas: " + numPaginas + "\nSinopsis: " + sinopsis
                 + "\nEstado de la ficha : " + estadoFicha;
     }
 }
