@@ -15,31 +15,31 @@ public class LibroDAO implements GenericDAO<Libro> {
 
     //Query para actualizar un libro en la db
     //NO actualiza el flag eliminado (solo se modifica en soft delete).
-    private static final String UPDATE_SQL = "UPDATE libros SET id_ficha = ?, titulo = ?, autor = ?,  anio_publicacion = ?, genero = ? WHERE id = ?";
+    private static final String UPDATE_SQL = "UPDATE libros SET id_ficha = ?, titulo = ?, autor = ?,  anio_publicacion = ?, genero = ? WHERE id_libro = ?";
 
     // Soft delete > Marca eliminado=TRUE sin borrar físicamente la fila.
     //Preserva integridad referencial y datos históricos.
-    private static final String DELETE_SQL = "UPDATE libros SET eliminado = TRUE WHERE id = ?";
+    private static final String DELETE_SQL = "UPDATE libros SET eliminado = TRUE WHERE id_libro = ?";
 
     //Obtener libro por id
     //Muestra el isbn que obtiene de la tabla FichaBibliografica
     private static final String SELECT_LIBRO_BY_ID_SQL = "SELECT l.*, f.isbn "
             + "FROM libros l "
-            + "LEFT JOIN fichabibliografica f ON l.fichabibliografica_id = f.id "
+            + "LEFT JOIN fichas_bibliograficas f ON l.id_ficha = f.id_ficha "
             + "WHERE l.id = ? AND l.eliminado = FALSE";
 
-    //Seleccionar todos los libros activos 
+    //Seleccionar todos los libros activos (incluye el isbn de ficha)
     private static final String SELECT_ALL_BOOKS_SQL
             = "SELECT l.*, f.isbn "
             + "FROM libros l "
-            + "LEFT JOIN fichabibliografica f ON l.fichabibliografica_id = f.id "
+            + "LEFT JOIN fichas_bibliograficas f ON l.id_ficha = f.id_ficha "
             + "WHERE l.eliminado = FALSE";
 
-// Buscar libros por autor de manera flexible con like
+// Buscar libros por autor de manera flexible con like (incluye el isbn de ficha)
     private static final String SEARCH_BOOKS_BY_AUTHOR_SQL
-            = "SELECT l.id, l.titulo, l.autor, l.anio_publicacion, l.fichabibliografica_id, f.isbn "
+            = "SELECT l.id_libro, l.titulo, l.autor, l.anio_publicacion, l.id_ficha, f.isbn "
             + "FROM libros l "
-            + "LEFT JOIN fichabibliografica f ON l.fichabibliografica_id = f.id "
+            + "LEFT JOIN fichas_bibliograficas f ON l.id_ficha = f.id_ficha "
             + "WHERE l.eliminado = FALSE AND l.autor LIKE ?";
 
 //Es importante crearlo para futuras operaciones aunque no lo usemos en este caso
@@ -199,14 +199,14 @@ private void setFichaBibliograficaId(PreparedStatement stmt, int parameterIndex,
     
     private Libro mapResultSetToLibro(ResultSet rs) throws SQLException {
         Libro libro = new Libro();
-        libro.setId(rs.getLong("id"));
+        libro.setId(rs.getLong("id_libro"));
         libro.setTitulo(rs.getString("titulo"));
         libro.setAutor(rs.getString("autor"));
         libro.setAnioPublicacion(rs.getInt("anio_publicacion"));
         libro.setGenero(rs.getString("genero"));
 
         // Manejo de LEFT JOIN: verificar si existe ficha bibliográfica
-        long fichaId = rs.getLong("fichabibliografica_id");
+        long fichaId = rs.getLong("id_ficha");
         if (fichaId > 0 && !rs.wasNull()) {
             FichaBibliografica ficha = new FichaBibliografica();
             ficha.setId(fichaId);
@@ -218,6 +218,7 @@ private void setFichaBibliograficaId(PreparedStatement stmt, int parameterIndex,
     }
 
 }
+
 
 
 
