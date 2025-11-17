@@ -1,53 +1,45 @@
 package Clases;
 
-/**
- * Clase base abstracta para todas las entidades del sistema.
- * Implementa el patrón de soft delete (baja lógica) y el campo PK.
- *
- * Se utiliza 'Long' para el ID, compatible con PKs INT/BIGINT de MySQL
- * y con las firmas de métodos 'long id' requeridas en el GenericDAO.
- */
+ //Clase base abstracta para todas las entidades del sistema.
+ 
 public abstract class Base {
     
-    /** Identificador único de la entidad. Debe ser de tipo Long. */
+    //Atributos para la base de datos
+    //En id se usa Long para que pueda ser NULL
+    //eliminado implementa la baja lógica (Soft Delete)
     private Long id;
-
-    /** Flag de eliminación lógica. */
     private boolean eliminado;
 
-    /**
-     * Constructor completo (usado típicamente por el DAO al leer de la BD).
-     */
-    protected Base(Long id, boolean eliminado) {
+    //Constructor completo (usado por el DAO al leer de la BD)
+    
+    protected Base(Long id, Boolean eliminado) {
         this.id = id;
         this.eliminado = eliminado;
     }
 
-    /**
-     * Constructor por defecto (para crear una entidad nueva).
-     * El ID se inicializa en null (será asignado por la BD)
-     * y el flag de eliminado se inicializa en false.
-     */
+    //Constructor por defecto para crear una entidad nueva
+    //El ID se inicializa en null que será asignado por la BD
+    //y el flag de eliminado se inicializa en false.
+    
     protected Base() {
-        this.id = null; // null si aún no fue persistido
+        this.id = null; 
         this.eliminado = false;
     }
 
-    // Getters
+    //Getters y Setters
     public Long getId() {
         return id;
     }
-
-    public boolean isEliminado() {
-        return eliminado;
-    }
-
-    // Setters
+    
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setEliminado(boolean eliminado) {
+    public Boolean getEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(Boolean eliminado) {
         this.eliminado = eliminado;
     }
 }

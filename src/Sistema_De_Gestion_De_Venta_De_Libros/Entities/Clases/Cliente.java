@@ -110,7 +110,7 @@ public class Cliente extends Base {
                 ", apellido='" + apellido + '\'' +
                 ", email='" + email + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", eliminado=" + isEliminado() +
+                ", eliminado=" + getEliminado() +
                 '}';
     }
 
