@@ -47,14 +47,20 @@ Antes de ejecutar la aplicación, debes configurar las credenciales de conexión
 Ubicación: Config/DatabaseConnection.java
 
 javaprivate static final String URL = "jdbc:mysql://localhost:3306/base_de_datos";
+
 private static final String USER = "tu_usuario";
+
 private static final String PASSWORD = "tu_contraseña";
+
 ------------------------------------------------------------------
 Credenciales de prueba sugeridas:
 
 URL: jdbc:mysql://localhost:3306/libreria
+
 Usuario: root
+
 Contraseña: (tu contraseña de MySQL)
+
 -----------------------------------------------------------------------
 Compilación y ejecución
  Desde el IDE (recomendado)
