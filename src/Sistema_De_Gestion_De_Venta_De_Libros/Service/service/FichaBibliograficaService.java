@@ -39,7 +39,7 @@ public class FichaBibliograficaService implements GenericService<FichaBibliograf
         try (Connection conn = DatabaseConnection.getConnection();
              TransactionManager tx = new TransactionManager(conn)) {
 
-            // Validar que no exista otra ficha con el mismo ISBN
+            // Validacion de que no exista otra ficha con el mismo ISBN
             validarIsbnUnico(ficha.getIsbn(), conn);
 
             fichaDAO.crear(ficha, conn);
@@ -59,7 +59,7 @@ public class FichaBibliograficaService implements GenericService<FichaBibliograf
         try (Connection conn = DatabaseConnection.getConnection();
              TransactionManager tx = new TransactionManager(conn)) {
 
-            // Validar que no haya otra ficha con el mismo ISBN (distinta ID)
+            // Validacion de que no haya otra ficha con el mismo ISBN (distinta ID)
             validarIsbnUnicoParaUpdate(ficha, conn);
 
             fichaDAO.actualizar(ficha, conn);
@@ -101,10 +101,7 @@ public class FichaBibliograficaService implements GenericService<FichaBibliograf
         }
     }
 
-    // ==========================
     // Validaciones internas
-    // ==========================
-
     private void validarDatosBasicos(FichaBibliografica ficha) {
         // Editorial
         if (ficha.getEditorial() == null || ficha.getEditorial().trim().isEmpty()) {
@@ -124,9 +121,7 @@ public class FichaBibliograficaService implements GenericService<FichaBibliograf
         }
     }
 
-    /**
-     * Verifica que no exista ninguna ficha con el mismo ISBN.
-     */
+    // Verifica que no exista ninguna ficha con el mismo ISBN.
     private void validarIsbnUnico(String isbn, Connection conn) throws Exception {
         if (isbn == null || isbn.trim().isEmpty()) {
             throw new IllegalArgumentException("El ISBN no puede estar vacío");
@@ -141,9 +136,7 @@ public class FichaBibliograficaService implements GenericService<FichaBibliograf
         }
     }
 
-    /**
-     * Similar a validarIsbnUnico, pero ignorando la propia ficha (para update).
-     */
+    //Similar a validarIsbnUnico, pero ignorando la propia ficha (para update).
     private void validarIsbnUnicoParaUpdate(FichaBibliografica ficha, Connection conn) throws Exception {
         String isbn = ficha.getIsbn();
         if (isbn == null || isbn.trim().isEmpty()) {
