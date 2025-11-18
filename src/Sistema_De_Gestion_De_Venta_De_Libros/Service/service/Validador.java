@@ -69,8 +69,5 @@ public class Validador {
                 "El campo '" + nombreCampo + "' excede la longitud máxima de " + maxLength + " caracteres.");
         }
     }
-
-    // Nota: Las validaciones de unicidad (ej. ISBN o Email ya existe en BD) 
-    // NO deben ir aquí. Deben ir en el Service (ej. ClienteService) 
-    // porque requieren una consulta al DAO/BD.
+    
 }
