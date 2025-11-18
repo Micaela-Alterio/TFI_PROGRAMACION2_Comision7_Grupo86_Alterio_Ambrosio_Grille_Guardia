@@ -1,4 +1,4 @@
-package Entities.Clases; // Asegúrate de que este sea el paquete correcto (prog2int.entities o Clases)
+package Entities.Clases; 
 
 import Clases.Base;
 /**
@@ -6,44 +6,28 @@ import Clases.Base;
  * Hereda de Base para el ID (Long) y la baja lógica (eliminado).
  * Contiene la referencia unidireccional a FichaBibliografica.
  */
+
 public class Libro extends Base {
+    //La clase Libro hereda de Base para el ID y la baja lógica
     
-    /** Referencia 1:1 unidireccional a FichaBibliografica (Clase B).
-     * Este atributo genera la clave foránea (FK) y la restricción UNIQUE 
-     * en la tabla 'libros' (campo id_ficha).
-     */
+    // Relación 1-1 unidireccional Libro -> FichaBibliografica
     private FichaBibliografica fichaBibliografica; 
 
-    /** Título del libro (NOT NULL en BD). */
+    // Atributos propios
     private String titulo;
-    
-    /** Autor del libro (NOT NULL en BD). */
     private String autor;
-    
-    /** Año de publicación del libro (YEAR en BD). */
-    private Integer anioPublicacion; 
-    
-    /** Género del libro. */
+    private Integer anioPublicacion; //Se usa Integer para permitir null
     private String genero;
 
-    /**
-     * Constructor por defecto para crear una nueva instancia.
-     * El ID se inicializa en null y eliminado en false (heredado de Base).
-     */
+    //Constructor vacío para DAO/JDBC para la creación de nuevos objetos
     public Libro() {
-        super();
+        super(); // Llama al constructor por defecto de Base
     }
 
-    /**
-     * Constructor completo usado por el DAO para reconstruir el objeto desde la base de datos.
-     * @param id Identificador único del libro (PK).
-     * @param eliminado Estado de baja lógica.
-     * @param fichaBibliografica Ficha asociada (referencia 1:1, UNIQUE).
-     * @param titulo Título del libro.
-     * @param autor Autor del libro.
-     * @param anioPublicacion Año de publicación.
-     * @param genero Género del libro.
-     */
+    
+    // Constructor completo para DAO para reconstruir el objeto a partir de
+    //la lectura de la base de datos.
+    
     public Libro(Long id, Boolean eliminado,
                  FichaBibliografica fichaBibliografica, String titulo, String autor,
                  Integer anioPublicacion, String genero) {
@@ -55,106 +39,68 @@ public class Libro extends Base {
         this.genero = genero;
     }
 
-    // --- Getters y Setters ---
-
-    /**
-     * Obtiene la ficha bibliográfica asociada (Clase B).
-     * @return El objeto FichaBibliografica.
-     */
+    //Getters y Setters
+    
     public FichaBibliografica getFichaBibliografica() {
         return fichaBibliografica;
     }
 
-    /**
-     * Asigna la ficha bibliográfica asociada.
-     * @param fichaBibliografica La ficha a asignar.
-     */
     public void setFichaBibliografica(FichaBibliografica fichaBibliografica) {
         this.fichaBibliografica = fichaBibliografica;
     }
 
-    /**
-     * Obtiene el título del libro.
-     * @return El título.
-     */
     public String getTitulo() {
         return titulo;
     }
 
-    /**
-     * Establece el título del libro.
-     * @param titulo El título a asignar.
-     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
-    /**
-     * Obtiene el autor del libro.
-     * @return El autor.
-     */
     public String getAutor() {
         return autor;
     }
 
-    /**
-     * Establece el autor del libro.
-     * @param autor El autor a asignar.
-     */
     public void setAutor(String autor) {
         this.autor = autor;
     }
 
-    /**
-     * Obtiene el año de publicación.
-     * @return El año.
-     */
     public Integer getAnioPublicacion() {
         return anioPublicacion;
     }
 
-    /**
-     * Establece el año de publicación.
-     * @param anioPublicacion El año a asignar.
-     */
     public void setAnioPublicacion(Integer anioPublicacion) {
         this.anioPublicacion = anioPublicacion;
     }
-
-    /**
-     * Obtiene el género del libro.
-     * @return El género.
-     */
+    
     public String getGenero() {
         return genero;
     }
 
-    /**
-     * Establece el género del libro.
-     * @param genero El género a asignar.
-     */
     public void setGenero(String genero) {
         this.genero = genero;
     }
 
-    // --- Sobrescritura de método de Object ---
+    //Metodo toString
     
-    /**
-     * Devuelve una representación legible del Libro.
-     * Muestra la referencia clave a la Ficha Bibliográfica.
-     * @return String formateado con los detalles clave del libro.
-     */
     @Override
     public String toString() {
-        String fichaString = (fichaBibliografica != null) ? 
-                             "(Ficha ID: " + fichaBibliografica.getId() + " - ISBN: " + fichaBibliografica.getIsbn() + ")" : 
-                             "No asignada";
         
-        String estadoLibro = this.isEliminado() ? "Eliminado (Baja Lógica)." : "Activo.";
+        //Se crea la variable estadoLibro y mediante un if/else se corrobora si
+        //el libro esta eliminado o activo y se almacena en la variable
+        //el mensaje correspondiente.
         
-        return "\nLibro:\nID: " + getId() + "\nTitulo: " + titulo +
-               "\nAutor: " + autor + "\nAño: " + anioPublicacion + 
-               "\nFicha Bibliográfica: " + fichaString + 
-               "\nEstado: " + estadoLibro;
+        String estadoLibro; 
+        
+        if (getEliminado() != null && getEliminado()) {
+            estadoLibro = "Libro eliminado.";
+        }else {
+            estadoLibro = "Libro existente.";
+        }
+        
+        return "\nLibro:\nidLibro: " + getId() + "\nTitulo: " + titulo +
+                "\nAutor: " + autor + "\nAnio de Publicacion: " +
+                anioPublicacion + "Ficha Bibliografica: "
+                + fichaBibliografica + "Estado del libro: " + estadoLibro;
     }
 }

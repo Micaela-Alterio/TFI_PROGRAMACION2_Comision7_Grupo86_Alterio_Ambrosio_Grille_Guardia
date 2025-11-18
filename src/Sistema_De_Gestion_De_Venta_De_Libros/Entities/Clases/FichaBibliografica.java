@@ -3,125 +3,94 @@ package Entities.Clases;
 import Clases.Base;
 import java.util.Objects;
 
-/**
- * Entidad FichaBibliografica (Clase B en la relación 1:1).
- * Contiene datos bibliográficos asociados a un Libro.
- * Hereda de Base para el ID (Long) y la baja lógica (eliminado).
- */
+
+//Entidad FichaBibliografica (Clase B en la relación 1:1).
+
 public class FichaBibliografica extends Base {
+    //La clase FichaBibliografica hereda de Base para el ID y la baja lógica
     
-    /** Editorial del libro (NOT NULL en BD). */
+    // Atributos propios
     private String editorial;
-    
-    /** ISBN del libro (NOT NULL, UNIQUE en BD). Utilizado para equals/hashCode. */
-    private String isbn;    
-    
-    /** Idioma en el que está el libro (NOT NULL en BD). */
+    private String isbn; 
     private String idioma;
-    
-    /** Número de páginas (INT, CHECK > 0 en BD). Se usa Integer para permitir null/opcionalidad. */
-    private Integer nroPaginas; 
-    
-    /** Sinopsis del libro. */
+    private Integer numPaginas; // Se usa Integer para permitir null
     private String sinopsis;
     
-    /**
-     * Constructor por defecto para crear una nueva instancia.
-     * El ID se inicializa en null (será asignado por la BD) y eliminado en false (heredado de Base).
-     */
+    // Constructor vacío para DAO/JDBC para la creación de nuevos objetos
     public FichaBibliografica() {
         super(); // Llama al constructor por defecto de Base
     }
 
-    /**
-     * Constructor completo usado por el DAO para reconstruir el objeto desde la base de datos.
-     * @param id Identificador único de la ficha (PK).
-     * @param eliminado Estado de baja lógica.
-     * @param editorial Editorial del libro.
-     * @param isbn ISBN del libro (UNIQUE).
-     * @param idioma Idioma.
-     * @param nroPaginas Número de páginas.
-     * @param sinopsis Resumen o sinopsis.
-     */
+    // Constructor completo para DAO para reconstruir el objeto a partir de
+    //la lectura de la base de datos.
     public FichaBibliografica(Long id, Boolean eliminado, String editorial,
-                              String isbn, String idioma, Integer nroPaginas, String sinopsis) {
+            String isbn, String idioma, Integer nroPaginas, String sinopsis) {
+        
         super(id, eliminado); // Llama al constructor completo de Base
         this.editorial = editorial;
         this.isbn = isbn;
         this.idioma = idioma;
-        this.nroPaginas = nroPaginas;
+        this.numPaginas = nroPaginas;
         this.sinopsis = sinopsis;
     }
     
-    // --- Getters y Setters ---
-
-    /**
-     * Obtiene la editorial.
-     * @return La editorial.
-     */
-    public String getEditorial() { return editorial; }
+    //Metodo que permite actualizar los datos de la ficha, cumpliendo la función
+    //'Update' del CRUD.
     
-    /**
-     * Establece la editorial.
-     * @param editorial La editorial a asignar.
-     */
-    public void setEditorial(String editorial) { this.editorial = editorial; }
+    public void actualizar(String isbn, String idioma, String editorial,
+            Integer numPaginas, String sinopsis) {
+        
+        this.editorial = editorial;
+        this.isbn = isbn;
+        this.idioma = idioma;
+        this.numPaginas = numPaginas;
+        this.sinopsis = sinopsis;
+    }
+    //Getters & Setters
+
+    public String getEditorial() {
+        return editorial;
+    }
+
+    public void setEditorial(String editorial) {
+        this.editorial = editorial;
+    }
     
-    /**
-     * Obtiene el ISBN.
-     * @return El ISBN.
-     */
-    public String getIsbn() { return isbn; }
+    public String getIsbn() {
+        return isbn;
+    }
 
-    /**
-     * Establece el ISBN (debe ser único).
-     * @param isbn El ISBN a asignar.
-     */
-    public void setIsbn(String isbn) { this.isbn = isbn; }
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-    /**
-     * Obtiene el idioma.
-     * @return El idioma.
-     */
-    public String getIdioma() { return idioma; }
+    public String getIdioma() {
+        return idioma;
+    }
 
-    /**
-     * Establece el idioma.
-     * @param idioma El idioma a asignar.
-     */
-    public void setIdioma(String idioma) { this.idioma = idioma; }
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
+    }
 
-    /**
-     * Obtiene el número de páginas.
-     * @return El número de páginas.
-     */
-    public Integer getNroPaginas() { return nroPaginas; }
+    public Integer getNroPaginas() {
+        return numPaginas;
+    }
 
-    /**
-     * Establece el número de páginas.
-     * @param nroPaginas El número de páginas a asignar.
-     */
-    public void setNroPaginas(Integer nroPaginas) { this.nroPaginas = nroPaginas; }
+    public void setNroPaginas(Integer nroPaginas) {
+        this.numPaginas = nroPaginas;
+    }
 
-    /**
-     * Obtiene la sinopsis.
-     * @return La sinopsis.
-     */
-    public String getSinopsis() { return sinopsis; }
+    public String getSinopsis() {
+        return sinopsis;
+    }
 
-    /**
-     * Establece la sinopsis.
-     * @param sinopsis La sinopsis a asignar.
-     */
-    public void setSinopsis(String sinopsis) { this.sinopsis = sinopsis; }
+    public void setSinopsis(String sinopsis) {
+        this.sinopsis = sinopsis;
+    }
     
-    // --- Sobrescritura de métodos de Object ---
-    
-    /**
-     * Compara dos fichas bibliográficas por igualdad SEMÁNTICA basada en el campo UNICO (ISBN).
-     * @param o Objeto a comparar.
-     * @return true si las fichas tienen el mismo ISBN.
-     */
+    //Compara dos fichas bibliográficas por igualdad semantica basada en el ISBN
+    //o es el Objeto a comparar
+    //Retorna true si las fichas tienen el mismo ISBN
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -131,26 +100,31 @@ public class FichaBibliografica extends Base {
         return isbn != null && Objects.equals(isbn, that.isbn);
     }
 
-    /**
-     * Calcula el hash code basado en el ISBN, consistente con equals().
-     * @return Hash code de la ficha.
-     */
+    //Calcula el hash code basado en el ISBN, consistente con equals().
+    //Retorna el Hash code de la ficha.
     @Override
     public int hashCode() {
         return Objects.hash(isbn);
     }
     
-    /**
-     * Devuelve una representación legible de la Ficha Bibliográfica.
-     * @return String formateado con los detalles clave.
-     */
+    //Metodo toString
     @Override
     public String toString() {
-        String estadoFicha = this.isEliminado() ? "Ficha eliminada (Baja Lógica)." : "Ficha activa.";
+        
+        //Se crea la variable estadoFicha y mediante un if/else se corrobora si
+        //la ficha esta eliminada o activa y se almacena en la variable el
+        //mensaje correspondiente.
+        String estadoFicha; 
+        
+        if (getEliminado() != null && getEliminado()) {
+            estadoFicha = "Ficha eliminada.";
+        }else {
+            estadoFicha = "Ficha existente.";
+        }
 
         return "\nFicha Bibliografica:\nID Ficha: " + getId() + "\nEditorial: "
                 + editorial + "\nISBN: " + isbn + "\nIdioma: " + idioma +
-                "\nNumero de Páginas: " + nroPaginas + "\nSinopsis: " + sinopsis
+                "\nNumero de Páginas: " + numPaginas + "\nSinopsis: " + sinopsis
                 + "\nEstado de la ficha : " + estadoFicha;
     }
 }

@@ -30,7 +30,7 @@ public class Cliente extends Base {
      * @param email Correo electrónico (UNIQUE).
      * @param telefono Número de teléfono.
      */
-    public Cliente(Long id, boolean eliminado, String nombre, String apellido, String email, String telefono) {
+    public Cliente(Long id, Boolean eliminado, String nombre, String apellido, String email, String telefono) {
         super(id, eliminado);
         this.nombre = nombre;
         this.apellido = apellido;
@@ -44,6 +44,15 @@ public class Cliente extends Base {
      */
     public Cliente() {
         super();
+    }
+    
+    public void actualizar(String nombre, String apellido, String email,
+            String telefono) {
+        
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
     }
     
     // --- Getters y Setters ---
@@ -110,7 +119,7 @@ public class Cliente extends Base {
                 ", apellido='" + apellido + '\'' +
                 ", email='" + email + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", eliminado=" + isEliminado() +
+                ", eliminado=" + getEliminado() +
                 '}';
     }
 
