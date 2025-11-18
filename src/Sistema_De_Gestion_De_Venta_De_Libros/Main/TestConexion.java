@@ -15,7 +15,7 @@ public class TestConexion {
             if (conn != null) {
                 System.out.println(" La conexión se estableció con éxito.");
                 
-                // Ejecutar una consulta SQL con PreparedStatement para obtener una lista de libros
+                // Ejecuta una consulta SQL con PreparedStatement para obtener una lista de libros
                 
                 String sql = "SELECT * FROM libros";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql); 
@@ -39,3 +39,4 @@ public class TestConexion {
     }
 
 }
+
