@@ -1,7 +1,9 @@
 # TFI - Trabajo Final Integrador de Programacion 2
 
 ▪ Descripción del dominio elegido.
-
+El proyecto modela un sistema de gestión para una Librería, basándose en los siguientes modelos de relación:
+- Foco principal: Relación 1 -> 1 unidireccional entre Libro y FichaBibliografica. Cada libro conoce a una ficha única que detalla su información técnica.
+- Entidades de apoyo: Se incorporaron Cliente y Venta para simular un contexto comercial real, estableciendo relaciones N:1 (una venta se asocia a un cliente y un libro).
 
 ▪ Requisitos (Java/BD) y pasos para crear la base con el .sql
 provisto.
