@@ -21,13 +21,13 @@ La carga de datos se realiza ejecutando dos archivos SQL en el orden especificad
 1. Ejecutar el script de creación de tablas
 
 Abre DBeaver y conéctate a tu servidor MySQL
-Abre el archivo creacion_de_tablas.sql
+Abre el archivo [creacion_de_tablas.sql](https://github.com/Micaela-Alterio/TFI_PROGRAMACION2_Comision7_Grupo86_Alterio_Ambrosio_Grille_Guardia/blob/main/sql/Creacion_de_tablas.sql)
 Ejecuta el script completo (Ctrl+Enter o botón "Execute SQL Script")
 
 Este script creará la base de datos y todas las tablas necesarias con sus respectivas relaciones y constraints.
 2. Ejecutar el script de carga de datos
 
-Una vez creadas las tablas, abre el archivo carga_de_datos.sql
+Una vez creadas las tablas, abre el archivo [carga_de_datos.sql](https://github.com/Micaela-Alterio/TFI_PROGRAMACION2_Comision7_Grupo86_Alterio_Ambrosio_Grille_Guardia/blob/main/sql/Carga_de_datos.sql)
 Ejecuta el script completo
 
 Este script insertará todos los datos iniciales en las tablas previamente creadas.
