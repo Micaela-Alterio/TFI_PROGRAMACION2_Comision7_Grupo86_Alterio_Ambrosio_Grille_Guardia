@@ -1,5 +1,4 @@
-package Entities.Clases; // Asegúrate de que este sea el paquete correcto (prog2int.entities o Clases)
-
+package Entities.Clases; 
 import java.util.Objects;
 import Clases.Base;
 /**
