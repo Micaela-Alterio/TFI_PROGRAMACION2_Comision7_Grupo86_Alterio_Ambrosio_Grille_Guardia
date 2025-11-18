@@ -1,5 +1,12 @@
-package Clases;
- 
+package Entities.Clases; 
+
+import Clases.Base;
+/**
+ * Entidad Libro (Clase A en la relación 1:1).
+ * Hereda de Base para el ID (Long) y la baja lógica (eliminado).
+ * Contiene la referencia unidireccional a FichaBibliografica.
+ */
+
 public class Libro extends Base {
     //La clase Libro hereda de Base para el ID y la baja lógica
     

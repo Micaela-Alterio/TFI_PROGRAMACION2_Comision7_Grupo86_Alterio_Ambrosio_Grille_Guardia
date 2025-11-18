@@ -1,6 +1,6 @@
 package Dao;
 
-import models.FichaBibliografica;
+import Entities.Clases.FichaBibliografica;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
