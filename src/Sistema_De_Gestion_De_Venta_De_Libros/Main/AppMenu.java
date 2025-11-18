@@ -65,10 +65,7 @@ public class AppMenu {
         }
     }
 
-    // =======================
     // SUBMENÚ LIBROS
-    // =======================
-
     private void menuLibros() throws Exception {
         int opcion;
         do {
@@ -180,10 +177,7 @@ public class AppMenu {
         System.out.println("Libro eliminado (baja lógica) correctamente.");
     }
 
-    // =======================
     // SUBMENÚ FICHAS
-    // =======================
-
     private void menuFichas() throws Exception {
         int opcion;
         do {
@@ -299,10 +293,7 @@ public class AppMenu {
         System.out.println("Ficha eliminada correctamente.");
     }
 
-    // =======================
     // BÚSQUEDAS
-    // =======================
-
     private void buscarLibroPorIsbn() throws Exception {
         System.out.println("=== Buscar libro por ISBN ===");
         String isbn = leerLineaNoVacia("ISBN: ");
@@ -332,10 +323,7 @@ public class AppMenu {
         }
     }
 
-    // =======================
     // DEMO ROLLBACK
-    // =======================
-
     private void probarRollback() throws Exception {
         System.out.println("=== Prueba de rollback (error simulado) ===");
         System.out.println("Se va a intentar insertar un libro y forzar un error para mostrar el rollback.");
@@ -358,10 +346,7 @@ public class AppMenu {
         listarLibros();
     }
 
-    // =======================
     // MÉTODOS AUXILIARES
-    // =======================
-
     private int leerEntero(String mensaje) {
         while (true) {
             try {
