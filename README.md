@@ -32,7 +32,7 @@ Este script creará la base de datos y todas las tablas necesarias con sus respe
 
 Una vez creadas las tablas, abrir el archivo [carga_de_datos.sql](https://github.com/Micaela-Alterio/TFI_PROGRAMACION2_Comision7_Grupo86_Alterio_Ambrosio_Grille_Guardia/blob/main/sql/Carga_de_datos.sql)
 
-    Ejecutar el script completo
+  Ejecutar el script completo
 
 Este script insertará todos los datos iniciales en las tablas previamente creadas.
 
