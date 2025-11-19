@@ -68,7 +68,7 @@ Usuario: root
 
 Contraseña: (tu contraseña de MySQL)
 
------------------------------------------------------------------------
+
 **Compilación y ejecución**
 
  Desde el IDE 
@@ -76,6 +76,8 @@ Contraseña: (tu contraseña de MySQL)
   Abrir el proyecto en el IDE (IntelliJ IDEA, NetBeans, Eclipse)
   Verificar que se tienen los drivers necesarios > JDBC de MySQL en el classpath del proyecto
   Ejecutar la clase principal: Main.Sistema_De_Gestion_De_Venta_De_Libros.java
+  
+-----------------------------------------------------------------------
 
 ### Flujo de uso de la aplicación
 
