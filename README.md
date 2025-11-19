@@ -143,35 +143,38 @@ Realiza una búsqueda flexible por título (coincidencia parcial, no sensible a 
 Título (o parte): años
 # Encontrará "Cien años de soledad"
 ```
-5. Probar rollback (error simulado)
+#### **5. Probar rollback (error simulado)**
+   
 Función de demostración que muestra el funcionamiento del sistema de transacciones:
 
-Intenta insertar un libro
-Fuerza un error intencionalmente
-Demuestra que la transacción se revierte correctamente
-Verifica que el libro NO quedó guardado en la base de datos
+- Intenta insertar un libro
+- Fuerza un error intencionalmente
+- Demuestra que la transacción se revierte correctamente
+- Verifica que el libro NO quedó guardado en la base de datos
 
-Validaciones implementadas
+**Validaciones implementadas**
+
 El sistema implementa las siguientes validaciones automáticas:
+
 Libros:
 
-Título y autor son obligatorios
-Año de publicación debe ser positivo
-No se puede eliminar un libro con ficha bibliográfica asociada
+- Título y autor son obligatorios
+- Año de publicación debe ser positivo
+- No se puede eliminar un libro con ficha bibliográfica asociada
 
 Fichas Bibliográficas:
 
-Editorial, ISBN e idioma son obligatorios
-ISBN debe ser único en el sistema
-Número de páginas debe ser positivo (si se proporciona)
+- Editorial, ISBN e idioma son obligatorios
+- ISBN debe ser único en el sistema
+- Número de páginas debe ser positivo (si se proporciona)
 
-Manejo de transacciones
+**Manejo de transacciones**
+
 Todas las operaciones de escritura (crear, actualizar, eliminar) utilizan transacciones mediante TransactionManager:
 
-Si la operación es exitosa: se confirma con commit()
-Si ocurre un error: se revierte automáticamente con rollback()
-
-Esto garantiza la integridad de los datos en todo momento.
+- Si la operación es exitosa: se confirma con commit()
+- Si ocurre un error: se revierte automáticamente con rollback()
+- Esto garantiza la integridad de los datos en todo momento.
 
 --------------------------------------------------------------------------
 ▪ Enlace al video
