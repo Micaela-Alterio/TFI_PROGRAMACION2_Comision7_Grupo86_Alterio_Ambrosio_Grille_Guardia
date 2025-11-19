@@ -13,10 +13,10 @@ Base de Datos:
 MySQL 8.0 o superior
 DBeaver Community (o cualquier cliente SQL compatible con MySQL)
 
-Java:
-
-JDK 11 o superior
+Java: JDK 11 o superior
 Driver JDBC de MySQL (mysql-connector-java)
+
+
 ---------------------------------------------------------------------
 Pasos para la carga de datos
 La carga de datos se realiza ejecutando dos archivos SQL en el orden especificado. A continuación, explicaremos el proceso utilizando DBeaver como herramienta de gestión de base de datos.
