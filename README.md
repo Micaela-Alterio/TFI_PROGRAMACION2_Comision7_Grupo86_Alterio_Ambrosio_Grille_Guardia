@@ -16,16 +16,15 @@ DBeaver Community (o cualquier cliente SQL compatible con MySQL)
 Java: JDK 11 o superior
 Driver JDBC de MySQL (mysql-connector-java)
 
-
 ---------------------------------------------------------------------
 **Pasos para la carga de datos**
 
 La carga de datos se realiza ejecutando dos archivos SQL en el orden especificado. A continuación, explicaremos el proceso utilizando DBeaver como herramienta de gestión de base de datos.
 1. Ejecutar el script de creación de tablas
 
- Abrir DBeaver y conectarse al servidor MySQL
- Abrir el archivo [creacion_de_tablas.sql](https://github.com/Micaela-Alterio/TFI_PROGRAMACION2_Comision7_Grupo86_Alterio_Ambrosio_Grille_Guardia/blob/main/sql/Creacion_de_tablas.sql)
- Ejecutar el script completo (Ctrl+Enter o botón "Execute SQL Script")
+   Abrir DBeaver y conectarse al servidor MySQL
+   Abrir el archivo [creacion_de_tablas.sql](https://github.com/Micaela-Alterio/TFI_PROGRAMACION2_Comision7_Grupo86_Alterio_Ambrosio_Grille_Guardia/blob/main/sql/Creacion_de_tablas.sql)
+   Ejecutar el script completo (Ctrl+Enter o botón "Execute SQL Script")
 
 Este script creará la base de datos y todas las tablas necesarias con sus respectivas relaciones y constraints.
 
@@ -33,31 +32,31 @@ Este script creará la base de datos y todas las tablas necesarias con sus respe
 
 Una vez creadas las tablas, abrir el archivo [carga_de_datos.sql](https://github.com/Micaela-Alterio/TFI_PROGRAMACION2_Comision7_Grupo86_Alterio_Ambrosio_Grille_Guardia/blob/main/sql/Carga_de_datos.sql)
 
-  Ejecutar el script completo
+    Ejecutar el script completo
 
 Este script insertará todos los datos iniciales en las tablas previamente creadas.
 
 3. Verificar la carga
 
- Verificar que los datos se cargaron correctamente ejecutando:
+   Verificar que los datos se cargaron correctamente ejecutando:
  
- SELECT COUNT(*) FROM nombre_tabla;
+   SELECT COUNT(*) FROM nombre_tabla;
 
 -------------------------------------------------------------------------------
-▪ Cómo compilar y ejecutar (credenciales de prueba y flujo de uso).
+▪ Compilar y ejecutar (credenciales de prueba y flujo de uso).
 --------------------------------------------------------------------------------
 
 **Configuración de credenciales de base de datos**
 
 Antes de ejecutar la aplicación, se deben configurar las credenciales de conexión a MySQL en la clase DatabaseConnection:
 
-Ubicación: Config/DatabaseConnection.java
+   Ubicación: Config/DatabaseConnection.java
 
-javaprivate static final String URL = "jdbc:mysql://localhost:3306/base_de_datos";
+   javaprivate static final String URL = "jdbc:mysql://localhost:3306/base_de_datos";
 
-private static final String USER = "tu_usuario";
+   private static final String USER = "tu_usuario";
 
-private static final String PASSWORD = "tu_contraseña";
+   private static final String PASSWORD = "tu_contraseña";
 
 ------------------------------------------------------------------
 **Credenciales de prueba sugeridas:**
